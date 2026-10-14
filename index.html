@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumora.cv - Form Pemesanan</title>
+<style>
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 20px 12px;
+    font-family: Arial, sans-serif;
+    background: #f7f4ff;
+    color: #29243b;
+}
+.container {
+    max-width: 700px;
+    margin: auto;
+}
+header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+.logo {
+    width: 65px;
+    height: 65px;
+    line-height: 65px;
+    margin: auto;
+    border-radius: 20px;
+    background: #7048e8;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+h1 {
+    margin-bottom: 5px;
+    color: #7048e8;
+}
+header p {
+    color: #777;
+}
+.card {
+    background: white;
+    padding: 22px;
+    margin-bottom: 18px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #00000008;
+}
+h2 {
+    margin-top: 0;
+    font-size: 21px;
+}
+h3 {
+    margin-top: 25px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee8ff;
+    font-size: 17px;
+}
+.hidden {
+    display: none !important;
+}
+.choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+.choice {
+    padding: 20px 10px;
+    border: 2px solid #e9e2ff;
+    border-radius: 14px;
+    background: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.choice span {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+.choice.active,
+.choice:hover {
+    border-color: #7048e8;
+    color: #7048e8;
+    background: #f8f5ff;
+}
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 14px;
+    border: 1px solid #ded8ed;
+    border-radius: 9px;
+    font-size: 14px;
+    background: white;
+    font-family: inherit;
+}
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #7048e8;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 12px;
+}
+.full {
+    grid-column: 1 / -1;
+}
+.btn {
+    display: inline-block;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 9px;
+    background: #7048e8;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn:hover {
+    opacity: 0.9;
+}
+.btn-light {
+    background: #eee8ff;
+    color: #7048e8;
+}
+.btn-wa {
+    background: #168b50;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    margin-top: 15px;
+}
+.dynamic-card {
+    padding: 15px;
+    border: 1px solid #e8e2f5;
+    border-radius: 12px;
+    margin: 12px 0;
+    background: #fdfcff;
+}
+.dynamic-card h4 {
+    margin-top: 0;
+}
+.small-text {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.6;
+}
+.attachment-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.attachment-row span {
+    overflow-wrap: anywhere;
+}
+@media (max-width: 500px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .full {
+        grid-column: auto;
+    }
+    .card {
+        padding: 17px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+    <div class="logo">L</div>
+    <h1>Lumora.cv</h1>
+    <p>Jasa Pembuatan CV & Surat Lamaran Kerja</p>
+</header>
+<div class="card">
+    <h2>✨ Mau membuat apa hari ini?</h2>
+    <div class="choices">
+        <button type="button" class="choice" data-type="cv">
+            <span>📄</span>
+            CV
+        </button>
+        <button type="button" class="choice" data-type="surat">
+            <span>✉️</span>
+            Surat Lamaran
+        </button>
+    </div>
+</div>
+<form id="formPemesanan" class="card hidden">
+<h2 id="judulForm">Form Pemesanan</h2>
+<p class="small-text">
+Silakan isi data yang tersedia. Jika ada data yang belum tersedia,
+boleh dikosongkan ya, kak.
+</p>
+<!-- ================= FORM CV ================= -->
+<div id="formCV" class="hidden">
+<p>Untuk pembuatan CV di Lumora.cv, silakan kirim data berikut ya, kak.</p>
+<h3>1. Pilihan Desain CV</h3>
+<a
+class="btn btn-light"
+href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTcxODEwNjkyMTc3Njc5?srtk=NnQ3cDNyYTdsdW1q"
+target="_blank"
+rel="noopener">
+Lihat Katalog CV di Sorotan Instagram ↗
+</a>
+<br><br>
+<label for="kodeCV">Kode katalog CV</label>
+<input
+type="text"
+id="kodeCV"
+placeholder="Contoh: 23">
+<h3>2. Data Diri</h3>
+<div class="grid">
+<div>
+<label>Nama lengkap</label>
+<input id="cvNama" placeholder="Nama lengkap">
+</div>
+<div>
+<label>Tempat, tanggal lahir</label>
+<input id="cvTTL" placeholder="Contoh: Bandung, 12 Mei 2002">
+</div>
+<div class="full">
+<label>Alamat domisili</label>
+<textarea id="cvAlamat"></textarea>
+</div>
+<div>
+<label>Agama</label>
+<input id="cvAgama">
+</div>
+<div>
+<label>Nomor WhatsApp</label>
+<input id="cvWA" type="tel" placeholder="08xxxxxxxxxx">
+</div>
+<div class="full">
+<label>Email</label>
+<input id="cvEmail" type="email" placeholder="nama@email.com">
+</div>
+</div>
+<h3>3. Pendidikan</h3>
+<label>Jumlah riwayat pendidikan</label>
+<select id="jumlahPendidikan">
+<option value="1">1 Pendidikan</option>
+<option value="2">2 Pendidikan</option>
+<option value="3">3 Pendidikan</option>
+<option value="4">4 Pendidikan</option>
+<option value="5">5 Pendidikan</option>
+</select>
+<div id="daftarPendidikan"></div>
+<h3>4. Pengalaman Kerja</h3>
+<label>Jumlah pengalaman kerja</label>
+<select id="jumlahKerja">
+<option value="0">Belum ada</option>
+<option value="1">1 Pengalaman</option>
+<option value="2">2 Pengalaman</option>
+<option value="3">3 Pengalaman</option>
+</select>
+<div id="daftarKerja"></div>
+<h3>5. Keahlian</h3>
+<label>Keahlian yang dimiliki</label>
+<textarea id="cvKeahlian" placeholder="Contoh: Microsoft Office, komunikasi, kerja tim"></textarea>
+<h3>6. Sertifikat / Organisasi</h3>
+<label>Sertifikat atau organisasi (jika ada)</label>
+<textarea id="cvSertifikat"></textarea>
+<h3>7. Posisi yang Ingin Dilamar</h3>
+<label>Posisi yang ingin dilamar</label>
+<input id="cvPosisi" placeholder="Contoh: Admin, Kasir, Barista">
+<p class="small-text">
+Jika ada data yang belum tersedia, tidak perlu khawatir ya, kak.
+<br><br>
+Terima kasih sudah memilih Lumora.cv!
+</p>
+</div>
+<!-- ================= FORM SURAT LAMARAN ================= -->
+<div id="formSurat" class="hidden">
+<p>Untuk pembuatan surat lamaran kerja di Lumora.cv, silakan isi data berikut ya, kak.</p>
+<h3>1. Data Diri</h3>
+<div class="grid">
+<div>
+<label>Nama lengkap</label>
+<input id="sNama">
+</div>
+<div>
+<label>Tempat, tanggal lahir</label>
+<input id="sTTL">
+</div>
+<div class="full">
+<label>Alamat lengkap</label>
+<textarea id="sAlamat"></textarea>
+</div>
+<div>
+<label>Jenis kelamin</label>
+<select id="sGender">
+<option value="">Pilih jenis kelamin</option>
+<option>Perempuan</option>
+<option>Laki-laki</option>
+</select>
+</div>
+<div>
+<label>Nomor WhatsApp</label>
+<input id="sWA" type="tel" placeholder="08xxxxxxxxxx">
+</div>
+<div>
+<label>Email</label>
+<input id="sEmail" type="email">
+</div>
+<div>
+<label>Pendidikan terakhir</label>
+<input id="sPendidikan" placeholder="Contoh: SMA/SMK">
+</div>
+<div class="full">
+<label>Jurusan</label>
+<input id="sJurusan">
+</div>
+</div>
+<h3>2. Data Lamaran</h3>
+<label>Nama perusahaan</label>
+<input id="sPerusahaan">
+<label>Alamat perusahaan</label>
+<textarea id="sAlamatPerusahaan"></textarea>
+<label>Posisi yang dilamar</label>
+<input id="sPosisi">
+<h3>3. Pengalaman</h3>
+<label>Pengalaman kerja / PKL (jika ada)</label>
+<textarea id="sPengalaman"></textarea>
+<label>Keahlian (jika ada)</label>
+<textarea id="sKeahlian"></textarea>
+<h3>4. Detail Surat</h3>
+<label>Kota dan tanggal pembuatan surat</label>
+<input id="sTanggal" placeholder="Contoh: Bandung, 15 Oktober 2026">
+<label>Jumlah dokumen lampiran</label>
+<input id="sJumlah" type="number" min="0" placeholder="Contoh: 5">
+<h3>5. Dokumen Lampiran</h3>
+<p class="small-text">
+Pilih dokumen dari daftar atau ketik dokumen sendiri.
+Kamu bisa menambahkan lebih dari satu dokumen.
+</p>
+<label>Pilih dokumen</label>
+<select id="pilihLampiran">
+<option value="">-- Pilih dokumen --</option>
+<option>CV</option>
+<option>Kartu Keluarga (KK)</option>
+<option>KTP</option>
+<option>Ijazah</option>
+<option>Transkrip Nilai</option>
+<option>SKCK</option>
+<option>Surat Keterangan Sehat</option>
+<option>Pas Foto</option>
+<option>Sertifikat</option>
+<option>Paklaring</option>
+<option>Dokumen lainnya</option>
+</select>
+<label>Atau ketik dokumen sendiri</label>
+<input id="lampiranCustom" placeholder="Contoh: Kartu pencari kerja">
+<button type="button" class="btn btn-light" id="tambahLampiran">
++ Tambah Dokumen
+</button>
+<div id="daftarLampiran"></div>
+<p class="small-text">
+Jika ada data yang belum tersedia, tidak perlu khawatir ya, kak. 😊
+<br><br>
+Terima kasih sudah memilih Lumora.cv!
+</p>
+</div>
+<button type="submit" class="btn btn-wa">
+Kirim Pesanan ke WhatsApp ↗
+</button>
+</form>
+</div>
+<script>
+const form = document.getElementById("formPemesanan");
+const formCV = document.getElementById("formCV");
+const formSurat = document.getElementById("formSurat");
+let jenisForm = "";
+let lampiran = [];
+// PILIH CV ATAU SURAT LAMARAN
+document.querySelectorAll(".choice").forEach(button => {
+    button.addEventListener("click", function() {
+        jenisForm = this.dataset.type;
+        document.querySelectorAll(".choice").forEach(btn => {
+            btn.classList.remove("active");
+        });
+        this.classList.add("active");
+        form.classList.remove("hidden");
+        formCV.classList.toggle("hidden", jenisForm !== "cv");
+        formSurat.classList.toggle("hidden", jenisForm !== "surat");
+        document.getElementById("judulForm").textContent =
+            jenisForm === "cv"
+            ? "Form Pemesanan CV"
+            : "Form Surat Lamaran Kerja";
+        form.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+});
+// MEMBUAT KOLOM PENDIDIKAN DINAMIS
+function buatPendidikan() {
+    const jumlah = Number(
+        document.getElementById("jumlahPendidikan").value
+    );
+    const container = document.getElementById("daftarPendidikan");
+    container.innerHTML = "";
+    for (let i = 1; i <= jumlah; i++) {
+        const div = document.createElement("div");
+        div.className = "dynamic-card";
+        div.innerHTML = `
+            <h4>Pendidikan ${i}</h4>
+            <label>Nama sekolah / kampus</label>
+            <input id="eduSekolah${i}" placeholder="Nama sekolah atau kampus">
+            <label>Jenjang pendidikan</label>
+            <select id="eduJenjang${i}">
+                <option value="">Pilih jenjang</option>
+                <option>SD</option>
+                <option>SMP</option>
+                <option>SMA</option>
+                <option>SMK</option>
+                <option>D1</option>
+                <option>D2</option>
+                <option>D3</option>
+                <option>D4</option>
+                <option>S1</option>
+                <option>S2</option>
+                <option>S3</option>
+                <option>Lainnya</option>
+            </select>
+            <label>Jurusan</label>
+            <input id="eduJurusan${i}" placeholder="Jurusan jika ada">
+            <label>Tahun masuk–lulus</label>
+            <input id="eduTahun${i}" placeholder="Contoh: 2020–2023">
+        `;
+        container.appendChild(div);
+    }
+}
+document.getElementById("jumlahPendidikan")
+.addEventListener("change", buatPendidikan);
+// MEMBUAT KOLOM PENGALAMAN KERJA DINAMIS
+function buatKerja() {
+    const jumlah = Number(
+        document.getElementById("jumlahKerja").value
+    );
+    const container = document.getElementById("daftarKerja");
+    container.innerHTML = "";
+    for (let i = 1; i <= jumlah; i++) {
+        const div = document.createElement("div");
+        div.className = "dynamic-card";
+        div.innerHTML = `
+            <h4>Pengalaman Kerja ${i}</h4>
+            <label>Nama perusahaan</label>
+            <input id="kerjaPerusahaan${i}">
+            <label>Posisi</label>
+            <input id="kerjaPosisi${i}">
+            <label>Lama bekerja</label>
+            <input id="kerjaLama${i}" placeholder="Contoh: 2024–2025">
+        `;
+        container.appendChild(div);
+    }
+}
+document.getElementById("jumlahKerja")
+.addEventListener("change", buatKerja);
+// TAMBAH DOKUMEN LAMPIRAN
+document.getElementById("tambahLampiran")
+.addEventListener("click", function() {
+    const pilihan = document.getElementById("pilihLampiran");
+    const custom = document.getElementById("lampiranCustom");
+    const nama = custom.value.trim() || pilihan.value;
+    if (!nama) {
+        alert("Pilih atau ketik dokumen terlebih dahulu.");
+        return;
+    }
+    lampiran.push(nama);
+    custom.value = "";
+    pilihan.value = "";
+    tampilkanLampiran();
+});
+function tampilkanLampiran() {
+    const container = document.getElementById("daftarLampiran");
+    container.innerHTML = "";
+    lampiran.forEach((nama, index) => {
+        const row = document.createElement("div");
+        row.className = "dynamic-card attachment-row";
+        const teks = document.createElement("span");
+        teks.textContent = (index + 1) + ". " + nama;
+        const hapus = document.createElement("button");
+        hapus.type = "button";
+        hapus.className = "btn btn-light";
+        hapus.textContent = "Hapus";
+        hapus.addEventListener("click", function() {
+            lampiran.splice(index, 1);
+            tampilkanLampiran();
+        });
+        row.appendChild(teks);
+        row.appendChild(hapus);
+        container.appendChild(row);
+    });
+}
+// MENGAMBIL NILAI KOLOM
+function nilai(id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+}
+// MEMBUAT PESAN WHATSAPP
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    if (!jenisForm) {
+        alert("Silakan pilih CV atau Surat Lamaran terlebih dahulu.");
+        return;
+    }
+    let pesan = "";
+    if (jenisForm === "cv") {
+        pesan = `
+Halo Lumora.cv, saya ingin membuat CV.
+KODE KATALOG CV
+Kode CV: ${nilai("kodeCV")}
+1. DATA DIRI
+Nama lengkap: ${nilai("cvNama")}
+Tempat, tanggal lahir: ${nilai("cvTTL")}
+Alamat domisili: ${nilai("cvAlamat")}
+Agama: ${nilai("cvAgama")}
+Nomor WhatsApp: ${nilai("cvWA")}
+Email: ${nilai("cvEmail")}
+2. PENDIDIKAN
+`;
+        const jumlahPendidikan = Number(
+            nilai("jumlahPendidikan")
+        );
+        for (let i = 1; i <= jumlahPendidikan; i++) {
+            pesan += `
+Pendidikan ${i}
+Nama sekolah/kampus: ${nilai("eduSekolah" + i)}
+Jenjang: ${nilai("eduJenjang" + i)}
+Jurusan: ${nilai("eduJurusan" + i)}
+Tahun masuk–lulus: ${nilai("eduTahun" + i)}
+`;
+        }
+        pesan += `
+3. PENGALAMAN KERJA
+`;
+        const jumlahKerja = Number(nilai("jumlahKerja"));
+        if (jumlahKerja === 0) {
+            pesan += "Belum ada pengalaman kerja.\n";
+        }
+        for (let i = 1; i <= jumlahKerja; i++) {
+            pesan += `
+Pengalaman ${i}
+Nama perusahaan: ${nilai("kerjaPerusahaan" + i)}
+Posisi: ${nilai("kerjaPosisi" + i)}
+Lama bekerja: ${nilai("kerjaLama" + i)}
+`;
+        }
+        pesan += `
+4. KEAHLIAN
+${nilai("cvKeahlian")}
+5. SERTIFIKAT / ORGANISASI
+${nilai("cvSertifikat")}
+6. POSISI YANG INGIN DILAMAR
+${nilai("cvPosisi")}
+Jika ada data yang belum tersedia, tidak perlu khawatir ya, kak.
+Terima kasih sudah memilih Lumora.cv!
+`;
+    } else {
+        pesan = `
+Halo Lumora.cv, saya ingin membuat surat lamaran kerja.
+1. DATA DIRI
+Nama lengkap: ${nilai("sNama")}
+Tempat, tanggal lahir: ${nilai("sTTL")}
+Alamat lengkap: ${nilai("sAlamat")}
+Jenis kelamin: ${nilai("sGender")}
+Nomor WhatsApp: ${nilai("sWA")}
+Email: ${nilai("sEmail")}
+Pendidikan terakhir: ${nilai("sPendidikan")}
+Jurusan: ${nilai("sJurusan")}
+2. DATA LAMARAN
+Nama perusahaan: ${nilai("sPerusahaan")}
+Alamat perusahaan: ${nilai("sAlamatPerusahaan")}
+Posisi yang dilamar: ${nilai("sPosisi")}
+3. PENGALAMAN
+Pengalaman kerja / PKL: ${nilai("sPengalaman")}
+Keahlian: ${nilai("sKeahlian")}
+4. DETAIL SURAT
+Kota dan tanggal pembuatan surat: ${nilai("sTanggal")}
+Jumlah dokumen lampiran: ${nilai("sJumlah")}
+5. DOKUMEN LAMPIRAN
+${lampiran.length ? lampiran.map((item, i) => (i + 1) + ". " + item).join("\n") : "Belum memilih dokumen lampiran"}
+Jika ada data yang belum tersedia, tidak perlu khawatir ya, kak. 😊
+Terima kasih sudah memilih Lumora.cv!
+`;
+    }
+    const nomorWA = "6285181309503";
+    const linkWA =
+        "https://wa.me/" +
+        nomorWA +
+        "?text=" +
+        encodeURIComponent(pesan);
+    window.open(linkWA, "_blank");
+});
+// TAMPILKAN KOLOM AWAL
+buatPendidikan();
+buatKerja();
+</script>
+</body>
+</html>
