@@ -16,7 +16,7 @@
 <div class="card"><button type="submit" class="btn btn-wa">Buat Pesanan WhatsApp ↗</button><div id="hasilKirim" class="hidden"><p class="small-text">Pesanan semua layanan akan digabung menjadi satu pesan WhatsApp dengan pemisah.</p><a id="tautanKirim" class="btn result-link" target="_blank" rel="noopener">Lanjutkan ke WhatsApp ↗</a></div></div>
 </form><footer>LUMORA.CV · YOUR FUTURE, BETTER PRESENTED.</footer></div>
 <script>
-const $=id=>document.getElementById(id);const nilai=id=>$(id)?$(id).value.trim():'';const nomorWA='6285181309503';
+const $=id=>document.getElementById(id);const nilai=id=>$(id)?$(id).value.trim():'';const nomorWA='6285168122412';
 const checks=[...document.querySelectorAll('.service-check')];
 function pilihan(){return checks.filter(c=>c.checked).map(c=>c.value)}
 function updateForm(){const selected=pilihan();$('dataBersama').classList.toggle('hidden',selected.length===0);document.querySelectorAll('.service-form').forEach(el=>el.classList.add('hidden'));selected.forEach(s=>{const ids={cv:'formCV',surat:'formSurat',resign:'formResign',foto:'formFoto'};const el=$(ids[s]);if(el)el.classList.remove('hidden')});$('hasilKirim').classList.add('hidden')}
